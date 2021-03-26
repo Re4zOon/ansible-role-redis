@@ -57,6 +57,6 @@ requirepass {{ redis_requirepass }}
 rename-command {{ redis_disabled_command }} ""
 {% endfor %}
 
-{% if redis_role == slave %}
+{% if redis_role == 'slave' %}
 slaveof {{ redis_master }}
 {% endif %}
