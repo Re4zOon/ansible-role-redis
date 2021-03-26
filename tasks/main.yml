@@ -26,7 +26,7 @@
 - name: Define redis_sentinel_package.
   set_fact:
     redis_package: "{{ __redis_sentinel_package }}"
-  when: redis_package is not defined
+  when: redis_sentinel_package is not defined
 
 - name: Ensure Redis configuration dir exists.
   file:
