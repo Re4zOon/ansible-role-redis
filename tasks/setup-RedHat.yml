@@ -4,9 +4,14 @@
     name: "{{ redis_package }}"
     state: present
     enablerepo: "{{ redis_enablerepo | default(omit, true) }}"
+    update_cache: yes
+    cache_valid_time: 3600
 
 - name: Ensure Redis-sentinel is installed.
   package:
     name: "{{ redis_sentinel_package }}"
     state: present
     enablerepo: "{{ redis_enablerepo | default(omit, true) }}"
+    update_cache: yes
+    cache_valid_time: 3600
+  when: redis_master is defined

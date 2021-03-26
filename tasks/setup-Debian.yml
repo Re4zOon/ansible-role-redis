@@ -3,8 +3,13 @@
   apt:
     name: "{{ redis_package }}"
     state: present
+    update_cache: yes
+    cache_valid_time: 3600
 
 - name: Ensure Redis-sentinel is installed.
   apt:
     name: "{{ redis_sentinel_package }}"
     state: present
+    update_cache: yes
+    cache_valid_time: 3600
+  when: redis_master is defined
