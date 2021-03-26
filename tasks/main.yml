@@ -22,6 +22,11 @@
   notify: restart redis
 
 # Setup redis-sentinel
+- name: Define redis_sentinel_package.
+  set_fact:
+    redis_sentinel_package: "{{ __redis_sentinel_package }}"
+  when: redis_sentinel_package is not defined
+
 - include_tasks: setup-redis-sentinel.yml
   when: redis_master is defined
 

@@ -1,9 +1,4 @@
-# Install redis-sentinel
-- name: Define redis_sentinel_package.
-  set_fact:
-    redis_sentinel_package: "{{ __redis_sentinel_package }}"
-  when: redis_sentinel_package is not defined
-
+---
 - name: Ensure Redis-sentinel configuration dir exists.
   file:
     path: "{{ redis_sentinel_conf_path | dirname }}"
