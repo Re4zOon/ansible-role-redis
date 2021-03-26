@@ -25,7 +25,7 @@
 # Install redis-sentinel
 - name: Define redis_sentinel_package.
   set_fact:
-    redis_package: "{{ __redis_sentinel_package }}"
+    redis_sentinel_package: "{{ __redis_sentinel_package }}"
   when: redis_sentinel_package is not defined
 
 - name: Ensure Redis configuration dir exists.
@@ -40,7 +40,6 @@
     dest: "{{ redis_sentinel_conf_path }}"
     mode: "{{ redis_conf_mode }}"
   notify: restart redis-sentinel
-
 
 # Setup/install tasks.
 - include_tasks: setup-RedHat.yml
