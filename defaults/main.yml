@@ -11,7 +11,7 @@ redis_timeout: 300
 redis_loglevel: "notice"
 redis_logfile: /var/log/redis/redis-server.log
 sentinel_logfile: /var/log/redis/sentinel-server.log
-protected-mode: "no"
+redis_protected_mode: "no"
 
 redis_databases: 16
 
