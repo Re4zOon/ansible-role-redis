@@ -13,6 +13,13 @@ redis_logfile: /var/log/redis/redis-server.log
 sentinel_logfile: /var/log/redis/sentinel-server.log
 redis_protected_mode: "no"
 
+#How long we should wait for replication rebuild to finish with the set parallelism (msec)
+#When timeout reached, all remaining replicas will get instantly reconfigured
+failover_timeout: 60000
+
+#How long we wait until a sentinel is deemed offline (msec)
+sentinel_timeout: 15000
+
 redis_databases: 16
 
 # Set to an empty set to disable persistence (saving the DB to disk).
