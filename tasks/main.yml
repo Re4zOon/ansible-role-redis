@@ -45,3 +45,4 @@
 
 - name: Ensure Redis-sentinel is running and enabled on boot.
   service: "name={{ sentinel_daemon }} state=started enabled=yes"
+  when: redis_master is defined
