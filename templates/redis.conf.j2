@@ -58,5 +58,5 @@ rename-command {{ redis_disabled_command }} ""
 {% endfor %}
 
 {% if redis_role == slave %}
-replicaof {{ redis_master }}
+slaveof {{ redis_master }}
 {% endif %}
