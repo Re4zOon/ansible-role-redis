@@ -28,13 +28,13 @@
     redis_sentinel_package: "{{ __redis_sentinel_package }}"
   when: redis_sentinel_package is not defined
 
-- name: Ensure Redis configuration dir exists.
+- name: Ensure Redis-sentinel configuration dir exists.
   file:
     path: "{{ redis_sentinel_conf_path | dirname }}"
     state: directory
     mode: 0755
 
-- name: Ensure Redis is configured.
+- name: Ensure Redis-sentinel is configured.
   template:
     src: sentinel.conf.j2
     dest: "{{ redis_sentinel_conf_path }}"
