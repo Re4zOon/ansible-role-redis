@@ -21,25 +21,9 @@
     mode: "{{ redis_conf_mode }}"
   notify: restart redis
 
-
-# Install redis-sentinel
-- name: Define redis_sentinel_package.
-  set_fact:
-    redis_sentinel_package: "{{ __redis_sentinel_package }}"
-  when: redis_sentinel_package is not defined
-
-- name: Ensure Redis-sentinel configuration dir exists.
-  file:
-    path: "{{ redis_sentinel_conf_path | dirname }}"
-    state: directory
-    mode: 0755
-
-- name: Ensure Redis-sentinel is configured.
-  template:
-    src: sentinel.conf.j2
-    dest: "{{ redis_sentinel_conf_path }}"
-    mode: "{{ redis_conf_mode }}"
-  notify: restart redis-sentinel
+# Setup redis-sentinel
+- include_tasks: setup-redis-sentinel.yml
+  when: redis_master is defined
 
 # Setup/install tasks.
 - include_tasks: setup-RedHat.yml
