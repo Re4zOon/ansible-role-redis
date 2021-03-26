@@ -3,3 +3,7 @@ __redis_package: redis
 redis_daemon: redis
 redis_conf_path: /etc/redis.conf
 redis_conf_mode: 0644
+
+__redis_sentinel_package: redis-sentinel
+redis_sentinel_daemon: redis-sentinel
+redis_sentinel_conf_path: /etc/redis/sentinel.conf

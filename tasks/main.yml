@@ -21,6 +21,27 @@
     mode: "{{ redis_conf_mode }}"
   notify: restart redis
 
+
+# Install redis-sentinel
+- name: Define redis_sentinel_package.
+  set_fact:
+    redis_package: "{{ __redis_sentinel_package }}"
+  when: redis_package is not defined
+
+- name: Ensure Redis configuration dir exists.
+  file:
+    path: "{{ redis_sentinel_conf_path | dirname }}"
+    state: directory
+    mode: 0755
+
+- name: Ensure Redis is configured.
+  template:
+    src: sentinel.conf.j2
+    dest: "{{ redis_sentinel_conf_path }}"
+    mode: "{{ redis_conf_mode }}"
+  notify: restart redis-sentinel
+
+
 # Setup/install tasks.
 - include_tasks: setup-RedHat.yml
   when: ansible_os_family == 'RedHat'
@@ -33,3 +54,6 @@
 
 - name: Ensure Redis is running and enabled on boot.
   service: "name={{ redis_daemon }} state=started enabled=yes"
+
+- name: Ensure Redis-sentinel is running and enabled on boot.
+  service: "name={{ sentinel_daemon }} state=started enabled=yes"

@@ -9,6 +9,9 @@ bind {{ redis_bind_interface }}
 unixsocket {{ redis_unixsocket }}
 {% endif %}
 
+protected-mode {{ redis_protected_mode }}
+
+
 timeout {{ redis_timeout }}
 
 loglevel {{ redis_loglevel }}
@@ -53,3 +56,7 @@ requirepass {{ redis_requirepass }}
 {% for redis_disabled_command in redis_disabled_commands %}
 rename-command {{ redis_disabled_command }} ""
 {% endfor %}
+
+{% if redis_role == slave %}
+replicaof {{ redis_master }}
+{% endif %}

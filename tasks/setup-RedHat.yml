@@ -4,3 +4,9 @@
     name: "{{ redis_package }}"
     state: present
     enablerepo: "{{ redis_enablerepo | default(omit, true) }}"
+
+- name: Ensure Redis-sentinel is installed.
+  package:
+    name: "{{ redis_sentinel_package }}"
+    state: present
+    enablerepo: "{{ redis_enablerepo | default(omit, true) }}"

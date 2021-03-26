@@ -3,3 +3,8 @@
   apt:
     name: "{{ redis_package }}"
     state: present
+
+- name: Ensure Redis-sentinel is installed.
+  apt:
+    name: "{{ redis_sentinel_package }}"
+    state: present

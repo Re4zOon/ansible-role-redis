@@ -3,12 +3,16 @@
 redis_enablerepo: epel
 
 redis_port: 6379
+sentinel_port: 26379
 redis_bind_interface: 127.0.0.1
+sentinel_bind_interface: 127.0.0.1
 redis_unixsocket: ''
 redis_timeout: 300
 
 redis_loglevel: "notice"
 redis_logfile: /var/log/redis/redis-server.log
+sentinel_logfile: /var/log/redis/sentinel-server.log
+protected-mode: "no"
 
 redis_databases: 16
 
@@ -28,6 +32,9 @@ redis_maxmemory_samples: 5
 
 redis_appendonly: "no"
 redis_appendfsync: "everysec"
+
+redis_master: ''
+redis_quorum: ''
 
 # Add extra include files for local configuration/overrides.
 redis_includes: []
