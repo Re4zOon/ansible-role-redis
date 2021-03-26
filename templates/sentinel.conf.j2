@@ -5,7 +5,7 @@ pidfile /var/run/sentinel/{{ sentinel_daemon }}.pid
 logfile {{ sentinel_logfile }}
 
 port {{ sentinel_port }}
-bind {{ sentinel_bind_interface }}
+bind {{ redis_bind_interface }}
 
 dir {{ redis_dbdir }}
 
